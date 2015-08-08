@@ -9,7 +9,8 @@ import router.Routes
 class AppComponents(context: Context) extends BuiltInComponentsFromContext(context) with NingWSComponents {
 
   val statsService = new StatsService(wsApi, configuration.getString("cricinfo.baseUrl").getOrElse(sys.error("Missing Cricinfo URL")))
-  val appController = new Application(statsService)
+  val tweetService = new TweetService(statsService)
+  val appController = new Application(statsService, tweetService, configuration.getString("tweet.apiKey").getOrElse(sys.error("Missing tweet API key")))
 
   val router: Router = new Routes(httpErrorHandler, appController)
 

@@ -4,4 +4,4 @@
 
 # Home page
 GET        /                    controllers.Application.randomStat
-GET        /tweet               controllers.Application.tweet
+GET        /tweet               controllers.Application.tweet(apiKey)

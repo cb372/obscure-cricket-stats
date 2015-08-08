@@ -48,7 +48,7 @@ class BattingStatBuilder(ws: WSAPI, baseUrl: String) extends StatBuilder {
           val text = textParts.mkString(" ")
           Good(Stat(text, cricinfoUrl))
         case None =>
-          Bad(s"Failed to extract player name from Cricinfo response: ${resp.body}")
+          Bad(s"Failed to extract player name from Cricinfo response. Cricinfo URL: $cricinfoUrl, response: ${resp.body}")
       }
     }
   }

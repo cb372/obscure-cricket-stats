@@ -18,6 +18,7 @@ object ObscureCricketStats extends Build {
         ws,
         "org.jsoup" % "jsoup" % "1.8.3",
         "org.scalactic" %% "scalactic" % "2.2.5",
+        "org.twitter4j" % "twitter4j-core" % "4.0.4",
         "org.scalatest" %% "scalatest" % "2.2.5" % "test"
       ),
       routesGenerator := InjectedRoutesGenerator

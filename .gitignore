@@ -2,3 +2,4 @@ logs
 target
 /.idea
 /RUNNING_PID
+twitter4j.properties

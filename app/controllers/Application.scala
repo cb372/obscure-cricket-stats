@@ -7,8 +7,9 @@ import play.api.libs.json.Json
 import services._
 
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
-class Application(statsService: StatsService) extends Controller {
+class Application(statsService: StatsService, tweetService: TweetService, tweetApiKey: String) extends Controller {
 
   def randomStat = Action.async {
     statsService.randomStat() map {
@@ -17,6 +18,13 @@ class Application(statsService: StatsService) extends Controller {
     }
   }
 
-  def tweet = TODO
+  def tweet(apiKey: String) = Action.async {
+    if (apiKey == tweetApiKey) {
+      tweetService.tweetRandomStat() map {
+        case Good(stat) => Ok(Json.toJson(stat))
+        case Bad(errorMsg) => InternalServerError(s"Failed to tweet. $errorMsg")
+      }
+    } else Future.successful(Unauthorized("Invalid API key"))
+  }
 
 }
